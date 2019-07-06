@@ -23,10 +23,10 @@ public class BookWindowTest extends Application {
 			v.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
 			//v.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, null)));
 			
-			Scene scene = new Scene(v, 480, 640);
+			Scene scene = new Scene(v, 352, 505);
 			scene.setFill(null);
 			
-			Image img = new Image("GUI/testJAVAFX.png");
+			Image img = new Image("GUI/CookingBookScantitreSD.jpg");
 			ImageView imgView = new ImageView(img);
 			v.getChildren().add(imgView);
 			
