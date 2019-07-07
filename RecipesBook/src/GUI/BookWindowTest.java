@@ -17,7 +17,6 @@ public class BookWindowTest extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			//CECI EST UN COMM TU TEST THE COMMIT FCT
 			//BorderPane root = new BorderPane();
 			//Scene scene = new Scene(root, 400, 400);
 			VBox v = new VBox();
