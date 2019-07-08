@@ -67,6 +67,18 @@ public class BookWindowTest extends Application {
 			
 			/*__________________BUTTON HANDLER__________________*/
 			
+			
+			readB.setOnAction(new EventHandler<ActionEvent>(){
+				public void handle(ActionEvent e) {
+					System.out.println("Consultation");
+				}
+			});
+			
+			editB.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					System.out.println("Modifier");
+				}
+			});
 			quitB.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					primaryStage.close();
