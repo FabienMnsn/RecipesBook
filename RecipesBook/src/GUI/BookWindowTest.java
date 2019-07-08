@@ -1,6 +1,8 @@
 package GUI;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,11 +23,9 @@ public class BookWindowTest extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-			//BorderPane root = new BorderPane();
-			//Scene scene = new Scene(root, 400, 400);
 			Button readB = new Button("Consulter");
 			Button editB = new Button("Modifier");
-			editB.setTranslateY(65);
+			Button quitB = new Button("Quitter");
 			readB.setStyle(""
 					+ "-fx-font: 25 arial; "
 					+ "-fx-base: #660000; "
@@ -41,24 +41,39 @@ public class BookWindowTest extends Application {
 					+ "-fx-text-fill: #808080; "
 					+ "-fx-border-width: 1px; "
 					+ "-fx-border_style: solid;");
+			editB.setTranslateY(65);
+			
+			quitB.setStyle(""
+					+ "-fx-font: 25 arial; "
+					+ "-fx-base: #660000; "
+					+ "-fx-border-color: #b30000; "
+					+ "-fx-text-fill: #808080; "
+					+ "-fx-border-width: 1px; "
+					+ "-fx-border_style: solid;");
+			quitB.setTranslateY(130);
 			
 			StackPane stackpane = new StackPane();
-			//VBox v = new VBox();
-			//v.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
-			//v.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, null, null)));
-			
 			Rectangle2D screen = Screen.getPrimary().getVisualBounds();
 						
 			Image img = new Image("GUI/CookingBookScantitreSD.jpg", screen.getHeight()/2, 0, true, true);
 			ImageView imgView = new ImageView(img);
-			System.out.println("Image resize ["+img.getHeight()+", "+img.getWidth()+"]");
+			//System.out.println("Image resize ["+img.getHeight()+", "+img.getWidth()+"]");
 			
 			Scene scene = new Scene(stackpane, img.getWidth(), img.getHeight());
 			scene.setFill(null);
 			
-			//imgView.setFitHeight(352);
-			//imgView.setFitWidth();
-			stackpane.getChildren().addAll(imgView, readB, editB);
+			stackpane.getChildren().addAll(imgView, readB, editB, quitB);
+			
+			
+			/*__________________BUTTON HANDLER__________________*/
+			
+			quitB.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					primaryStage.close();
+				}
+			});
+			
+			
 			
 			primaryStage.centerOnScreen();
 			//primaryStage.setFullScreen(true);
