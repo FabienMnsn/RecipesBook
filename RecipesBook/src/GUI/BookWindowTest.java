@@ -26,6 +26,9 @@ public class BookWindowTest extends Application {
 			Button readB = new Button("Consulter");
 			Button editB = new Button("Modifier");
 			Button quitB = new Button("Quitter");
+			
+			Button readSceneB = new Button("Back to main menu");
+			
 			readB.setStyle(""
 					+ "-fx-font: 25 arial; "
 					+ "-fx-base: #660000; "
@@ -59,8 +62,8 @@ public class BookWindowTest extends Application {
 			ImageView imgView = new ImageView(img);
 			//System.out.println("Image resize ["+img.getHeight()+", "+img.getWidth()+"]");
 			
-			Scene scene = new Scene(stackpane, img.getWidth(), img.getHeight());
-			scene.setFill(null);
+			Scene mainScene = new Scene(stackpane, img.getWidth(), img.getHeight());
+			mainScene.setFill(null);
 			
 			stackpane.getChildren().addAll(imgView, readB, editB, quitB);
 			
@@ -71,6 +74,10 @@ public class BookWindowTest extends Application {
 			readB.setOnAction(new EventHandler<ActionEvent>(){
 				public void handle(ActionEvent e) {
 					System.out.println("Consultation");
+					VBox vbox = new VBox();
+					Scene readScene = new Scene(vbox, 400, 400);
+					vbox.getChildren().add(readSceneB);
+					primaryStage.setScene(readScene);
 				}
 			});
 			
@@ -79,20 +86,25 @@ public class BookWindowTest extends Application {
 					System.out.println("Modifier");
 				}
 			});
+			
 			quitB.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					primaryStage.close();
 				}
 			});
 			
-			
+			readSceneB.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					primaryStage.setScene(mainScene);
+				}
+			});
 			
 			primaryStage.centerOnScreen();
 			//primaryStage.setFullScreen(true);
 			//primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.initStyle(StageStyle.DECORATED);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			
-			primaryStage.setScene(scene);
+			primaryStage.setScene(mainScene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
