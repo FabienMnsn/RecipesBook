@@ -91,8 +91,13 @@ public class BookWindowTest extends Application {
 			VBox buttonVBox = new VBox();
 			buttonHBox.getChildren().addAll(previousButton, nextButton);
 			buttonVBox.getChildren().addAll(buttonHBox, quitConsultButton);
-			//-----------------------------
+			//--------------------------------------
+			//CONSULTATION WINDOW MAIN VBOX AND HBOX
+			//--------------------------------------
 			
+			//------------------
+			//CONSULTATION SCENE
+			//------------------
 			StackPane stackpaneConsult = new StackPane();
 			Scene consultScene = new Scene(stackpaneConsult, screen.getWidth(), screen.getHeight());
 			
