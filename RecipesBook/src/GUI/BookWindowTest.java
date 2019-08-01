@@ -3,6 +3,7 @@ package GUI;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -14,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -90,18 +93,20 @@ public class BookWindowTest extends Application {
 			//----------------------------
 			//SCENE 2 (CONSULTATION SCREEN)
 			//----------------------------
-			Button nextButton = new Button(">");
-			Button previousButton = new Button("<");
-			Button quitConsultButton = new Button("Quitter");
+			Button nextButton = new Button("Recette suivante");
+			Button previousButton = new Button("Recette précédente");
+			Button quitConsultButton = new Button("Fermer le Livre");
 			//-------------------------------
 			//BUTTON BOX (NEXT PREVIOUS QUIT)
 			//-------------------------------
 			HBox buttonHBox = new HBox();
 			buttonHBox.setAlignment(Pos.TOP_CENTER);
-			VBox buttonVBox = new VBox();
-			buttonVBox.setAlignment(Pos.TOP_CENTER);
-			buttonHBox.getChildren().addAll(previousButton, nextButton);
-			buttonVBox.getChildren().addAll(buttonHBox, quitConsultButton);
+			Region region1 = new Region();
+			Region region2 = new Region();
+			buttonHBox.setHgrow(region1, Priority.ALWAYS);
+			buttonHBox.setHgrow(region2, Priority.ALWAYS);
+			//buttonHBox.setSpacing((screen.getWidth()/2)/3-80);
+			buttonHBox.getChildren().addAll(previousButton, region1, quitConsultButton, region2, nextButton);
 			//--------------------------------------
 			//CONSULTATION WINDOW MAIN VBOX AND HBOX
 			//--------------------------------------
@@ -109,17 +114,15 @@ public class BookWindowTest extends Application {
 			//------------------------------
 			//CONSULTATION WINDOW RIGHT PAGE
 			//------------------------------
-			VBox rightPageVBox = new VBox();
-			rightPageVBox.setSpacing(10);
-			rightPageVBox.setMaxSize(screen.getWidth()/2, screen.getHeight());
-			rightPageVBox.setMinSize(screen.getWidth()/2, screen.getHeight());
-			rightPageVBox.setStyle("-fx-padding: 10;" + 
+			BorderPane rightPageBP = new BorderPane();
+			rightPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			rightPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			rightPageBP.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			rightPageVBox.setAlignment(Pos.TOP_CENTER);
 			Label titreRightPage = new Label("Titre de la recette");
 			titreRightPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
@@ -127,16 +130,23 @@ public class BookWindowTest extends Application {
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			BorderPane recetteRightPage = new BorderPane();
-			recetteRightPage.setStyle("-fx-padding: 10;" + 
+			TextArea recetteContentRightPage = new TextArea();
+			recetteContentRightPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
-                    "-fx-border-color: black;");
-			TextArea recetteContentRightPage = new TextArea();
+                    "-fx-border-color: black;"+
+                    "-fx-opacity: 1;");
 			recetteContentRightPage.setEditable(false);
-			rightPageVBox.getChildren().addAll(titreRightPage, recetteContentRightPage, buttonVBox);
+			recetteContentRightPage.setDisable(true);
+			rightPageBP.setMargin(recetteContentRightPage, new Insets(10,0,12,0));
+			rightPageBP.setAlignment(titreRightPage, Pos.CENTER);
+			rightPageBP.setTop(titreRightPage);
+			rightPageBP.setCenter(recetteContentRightPage);
+			rightPageBP.setBottom(buttonHBox);
+			//rightPageBP.getChildren().addAll(titreRightPage, recetteContentRightPage, buttonHBox);
+			
 			//-----------------------------
 			//CONSULTATION WINDOW LEFT PAGE
 			//-----------------------------
@@ -179,7 +189,7 @@ public class BookWindowTest extends Application {
 			//------------------
 			//CONSULTATION SCENE
 			//------------------
-			mainHBox.getChildren().addAll(leftPageVBox, rightPageVBox);
+			mainHBox.getChildren().addAll(leftPageVBox, rightPageBP);
 			Pane paneConsult = new Pane();
 			paneConsult.getChildren().add(mainHBox);
 			Scene consultScene = new Scene(paneConsult, screen.getWidth(), screen.getHeight());
