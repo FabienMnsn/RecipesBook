@@ -184,6 +184,12 @@ public class BookWindowTest extends Application {
 			
 			//#########################################################################################
 			
+			//----------------------------
+			//SCENE 3 (EDITION SCREEN)
+			//----------------------------
+			
+			//#########################################################################################
+			
 			//-------------------------
 			//BUTTON HANDLER MAIN SCENE
 			//-------------------------
@@ -196,7 +202,8 @@ public class BookWindowTest extends Application {
 			});
 			editB.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					//System.out.println("Modifier");
+					primaryStage.setScene(editScene);
+					primaryStage.centerOnScreen();
 				}
 			});
 			quitB.setOnAction(new EventHandler<ActionEvent>() {
