@@ -61,40 +61,21 @@ public class BookWindowTest extends Application {
 					+ "-fx-border-width: 1px; "
 					+ "-fx-border_style: solid;");
 			quitB.setTranslateY(130);
-			StackPane stackpaneMain = new StackPane();		
+			StackPane stackpaneMain = new StackPane();	
 			Image img = new Image("GUI/CookingBookScantitreSD.jpg", screen.getHeight()/2, 0, true, true);
 			ImageView imgView = new ImageView(img);
 			//System.out.println("Image resize ["+img.getHeight()+", "+img.getWidth()+"]");
 			Scene mainScene = new Scene(stackpaneMain, img.getWidth(), img.getHeight());
 			//mainScene.setFill(null);
 			stackpaneMain.getChildren().addAll(imgView, readB, editB, quitB);
-			//---------------------
-			//BUTTON HANDLER SCENE1
-			//---------------------
-			readB.setOnAction(new EventHandler<ActionEvent>(){
-				public void handle(ActionEvent e) {
-					System.out.println("Consultation");
-				}
-			});
-			editB.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					System.out.println("Modifier");
-				}
-			});
-			quitB.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					System.out.println("Quitting");
-					primaryStage.close();
-				}
-			});
 			
 			//#########################################################################################
 			
 			//----------------------------
 			//SCENE 2 (CONSULTATION SCREEN)
 			//----------------------------
-			Button nextButton = new Button("Recette suivante");
-			Button previousButton = new Button("Recette précédente");
+			Button nextConsultButton = new Button("Recette suivante");
+			Button previousConsultButton = new Button("Recette précédente");
 			Button quitConsultButton = new Button("Fermer le Livre");
 			//-------------------------------
 			//BUTTON BOX (NEXT PREVIOUS QUIT)
@@ -106,7 +87,7 @@ public class BookWindowTest extends Application {
 			buttonHBox.setHgrow(region1, Priority.ALWAYS);
 			buttonHBox.setHgrow(region2, Priority.ALWAYS);
 			//buttonHBox.setSpacing((screen.getWidth()/2)/3-80);
-			buttonHBox.getChildren().addAll(previousButton, region1, quitConsultButton, region2, nextButton);
+			buttonHBox.getChildren().addAll(previousConsultButton, region1, quitConsultButton, region2, nextConsultButton);
 			//--------------------------------------
 			//CONSULTATION WINDOW MAIN VBOX AND HBOX
 			//--------------------------------------
@@ -132,10 +113,10 @@ public class BookWindowTest extends Application {
                     "-fx-border-color: black;");
 			TextArea recetteContentRightPage = new TextArea();
 			recetteContentRightPage.setStyle("-fx-padding: 10;" + 
-                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-style: solid inside;" +
                     "-fx-border-width: 2;" +
-                    "-fx-border-insets: 2;" + 
-                    "-fx-border-radius: 2;" + 
+                    "-fx-border-insets: 2;" +
+                    "-fx-border-radius: 2;" +
                     "-fx-border-color: black;"+
                     "-fx-opacity: 1;");
 			recetteContentRightPage.setEditable(false);
@@ -150,18 +131,16 @@ public class BookWindowTest extends Application {
 			//-----------------------------
 			//CONSULTATION WINDOW LEFT PAGE
 			//-----------------------------
-			VBox leftPageVBox = new VBox();
-			leftPageVBox.setMaxSize(screen.getWidth()/2, screen.getHeight());
-			leftPageVBox.setMinSize(screen.getWidth()/2, screen.getHeight());
-			leftPageVBox.setStyle("-fx-padding: 10;" + 
+			BorderPane leftPageBP = new BorderPane();
+			leftPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			leftPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			leftPageBP.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			leftPageVBox.setAlignment(Pos.TOP_CENTER);
-			VBox topLeftPage = new VBox();
-			HBox bottomLeftPage = new HBox();
+			
 			Label selectLeftPage = new Label("Sélectionnez une recette");
 			selectLeftPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
@@ -180,16 +159,18 @@ public class BookWindowTest extends Application {
 			ingredientsLeftPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
-                    "-fx-border-insets: 2;" + 
-                    "-fx-border-radius: 2;" + 
+                    "-fx-border-insets: 2;" +
+                    "-fx-border-radius: 2;" +
                     "-fx-border-color: black;");
-			bottomLeftPage.getChildren().addAll(caracteristiquesLeftPage, ingredientsLeftPage);
 			
-			leftPageVBox.getChildren().addAll(selectLeftPage, bottomLeftPage);
+			leftPageBP.setAlignment(selectLeftPage, Pos.CENTER);
+			leftPageBP.setTop(selectLeftPage);
+			leftPageBP.setLeft(caracteristiquesLeftPage);
+			leftPageBP.setRight(ingredientsLeftPage);
 			//------------------
 			//CONSULTATION SCENE
 			//------------------
-			mainHBox.getChildren().addAll(leftPageVBox, rightPageBP);
+			mainHBox.getChildren().addAll(leftPageBP, rightPageBP);
 			Pane paneConsult = new Pane();
 			paneConsult.getChildren().add(mainHBox);
 			Scene consultScene = new Scene(paneConsult, screen.getWidth(), screen.getHeight());
@@ -203,6 +184,56 @@ public class BookWindowTest extends Application {
 			
 			//#########################################################################################
 			
+			//-------------------------
+			//BUTTON HANDLER MAIN SCENE
+			//-------------------------
+			readB.setOnAction(new EventHandler<ActionEvent>(){
+				public void handle(ActionEvent e) {
+					//System.out.println("Consultation");
+					primaryStage.setScene(consultScene);
+					primaryStage.centerOnScreen();
+				}
+			});
+			editB.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					//System.out.println("Modifier");
+				}
+			});
+			quitB.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					//System.out.println("Quitting");
+					primaryStage.close();
+				}
+			});
+			
+			//---------------------------------
+			//BUTTON HANDLER CONSULTATION SCENE
+			//---------------------------------
+			
+			previousConsultButton.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					//System.out.println("PREVIOUS recipe");
+				}
+			});
+			quitConsultButton.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					primaryStage.setScene(mainScene);
+					primaryStage.centerOnScreen();
+				}
+			});
+			nextConsultButton.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					//System.out.println("NEXT recipe");
+				}
+			});
+			
+			//----------------------------
+			//BUTTON HANDLER EDITION SCENE
+			//----------------------------
+			
+			
+			//#########################################################################################
+			
 			//-------------------
 			//PRIMARY STAGE SETUP
 			//-------------------
@@ -211,7 +242,7 @@ public class BookWindowTest extends Application {
 			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			//primaryStage.setScene(mainScene);
-			primaryStage.setScene(consultScene);
+			primaryStage.setScene(mainScene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
