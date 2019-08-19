@@ -80,100 +80,100 @@ public class BookWindowTest extends Application {
 			//-------------------------------
 			//BUTTON BOX (NEXT PREVIOUS QUIT)
 			//-------------------------------
-			HBox buttonHBox = new HBox();
-			buttonHBox.setAlignment(Pos.TOP_CENTER);
+			HBox consultButtonHBox = new HBox();
+			consultButtonHBox.setAlignment(Pos.TOP_CENTER);
 			Region region1 = new Region();
 			Region region2 = new Region();
-			buttonHBox.setHgrow(region1, Priority.ALWAYS);
-			buttonHBox.setHgrow(region2, Priority.ALWAYS);
+			consultButtonHBox.setHgrow(region1, Priority.ALWAYS);
+			consultButtonHBox.setHgrow(region2, Priority.ALWAYS);
 			//buttonHBox.setSpacing((screen.getWidth()/2)/3-80);
-			buttonHBox.getChildren().addAll(previousConsultButton, region1, quitConsultButton, region2, nextConsultButton);
+			consultButtonHBox.getChildren().addAll(previousConsultButton, region1, quitConsultButton, region2, nextConsultButton);
 			//--------------------------------------
 			//CONSULTATION WINDOW MAIN VBOX AND HBOX
 			//--------------------------------------
-			HBox mainHBox = new HBox();
+			HBox consultMainHBox = new HBox();
 			//------------------------------
 			//CONSULTATION WINDOW RIGHT PAGE
 			//------------------------------
-			BorderPane rightPageBP = new BorderPane();
-			rightPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
-			rightPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
-			rightPageBP.setStyle("-fx-padding: 10;" + 
+			BorderPane consultRightPageBP = new BorderPane();
+			consultRightPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			consultRightPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			consultRightPageBP.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			Label titreRightPage = new Label("Titre de la recette");
-			titreRightPage.setStyle("-fx-padding: 10;" + 
+			Label consultTitreRightPage = new Label("Titre de la recette");
+			consultTitreRightPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			TextArea recetteContentRightPage = new TextArea();
-			recetteContentRightPage.setStyle("-fx-padding: 10;" + 
+			TextArea consultRecetteContentRightPage = new TextArea();
+			consultRecetteContentRightPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" +
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" +
                     "-fx-border-radius: 2;" +
                     "-fx-border-color: black;"+
                     "-fx-opacity: 1;");
-			recetteContentRightPage.setEditable(false);
-			recetteContentRightPage.setDisable(true);
-			rightPageBP.setMargin(recetteContentRightPage, new Insets(10,0,12,0));
-			rightPageBP.setAlignment(titreRightPage, Pos.CENTER);
-			rightPageBP.setTop(titreRightPage);
-			rightPageBP.setCenter(recetteContentRightPage);
-			rightPageBP.setBottom(buttonHBox);
+			consultRecetteContentRightPage.setEditable(false);
+			consultRecetteContentRightPage.setDisable(true);
+			consultRightPageBP.setMargin(consultRecetteContentRightPage, new Insets(10,0,12,0));
+			consultRightPageBP.setAlignment(consultTitreRightPage, Pos.CENTER);
+			consultRightPageBP.setTop(consultTitreRightPage);
+			consultRightPageBP.setCenter(consultRecetteContentRightPage);
+			consultRightPageBP.setBottom(consultButtonHBox);
 			//rightPageBP.getChildren().addAll(titreRightPage, recetteContentRightPage, buttonHBox);
 			
 			//-----------------------------
 			//CONSULTATION WINDOW LEFT PAGE
 			//-----------------------------
-			BorderPane leftPageBP = new BorderPane();
-			leftPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
-			leftPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
-			leftPageBP.setStyle("-fx-padding: 10;" + 
+			BorderPane consultLeftPageBP = new BorderPane();
+			consultLeftPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			consultLeftPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			consultLeftPageBP.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
 			
-			Label selectLeftPage = new Label("Sélectionnez une recette");
-			selectLeftPage.setStyle("-fx-padding: 10;" + 
+			Label consultSelectLeftPage = new Label("Sélectionnez une recette");
+			consultSelectLeftPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			Label caracteristiquesLeftPage = new Label("Caractéristiques");
-			caracteristiquesLeftPage.setStyle("-fx-padding: 10;" + 
+			Label consultCaracteristiquesLeftPage = new Label("Caractéristiques");
+			consultCaracteristiquesLeftPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" + 
                     "-fx-border-radius: 2;" + 
                     "-fx-border-color: black;");
-			Label ingredientsLeftPage = new Label("Ingredients");
-			ingredientsLeftPage.setStyle("-fx-padding: 10;" + 
+			Label consultIngredientsLeftPage = new Label("Ingredients");
+			consultIngredientsLeftPage.setStyle("-fx-padding: 10;" + 
                     "-fx-border-style: solid inside;" + 
                     "-fx-border-width: 2;" +
                     "-fx-border-insets: 2;" +
                     "-fx-border-radius: 2;" +
                     "-fx-border-color: black;");
 			
-			leftPageBP.setAlignment(selectLeftPage, Pos.CENTER);
-			leftPageBP.setTop(selectLeftPage);
-			leftPageBP.setLeft(caracteristiquesLeftPage);
-			leftPageBP.setRight(ingredientsLeftPage);
+			consultLeftPageBP.setAlignment(consultSelectLeftPage, Pos.CENTER);
+			consultLeftPageBP.setTop(consultSelectLeftPage);
+			consultLeftPageBP.setLeft(consultCaracteristiquesLeftPage);
+			consultLeftPageBP.setRight(consultIngredientsLeftPage);
 			//------------------
 			//CONSULTATION SCENE
 			//------------------
-			mainHBox.getChildren().addAll(leftPageBP, rightPageBP);
-			Pane paneConsult = new Pane();
-			paneConsult.getChildren().add(mainHBox);
-			Scene consultScene = new Scene(paneConsult, screen.getWidth(), screen.getHeight());
+			consultMainHBox.getChildren().addAll(consultLeftPageBP, consultRightPageBP);
+			Pane consultPane = new Pane();
+			consultPane.getChildren().add(consultMainHBox);
+			Scene consultScene = new Scene(consultPane, screen.getWidth(), screen.getHeight());
 			/*
 			readSceneB.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
@@ -184,9 +184,109 @@ public class BookWindowTest extends Application {
 			
 			//#########################################################################################
 			
-			//----------------------------
+			//------------------------
 			//SCENE 3 (EDITION SCREEN)
-			//----------------------------
+			//------------------------
+			
+			Button editSaveButton = new Button("Sauvegarder la recette");
+			Button editCancelButton = new Button("Abandonner la création");
+			Button editQuitButton = new Button("Fermer le Livre");
+			//-----------------------------
+			//BUTTON BOX (SAVE QUIT CANCEL)
+			//-----------------------------
+			HBox editButtonHBox = new HBox();
+			editButtonHBox.setAlignment(Pos.TOP_CENTER);
+			Region region3 = new Region();
+			Region region4 = new Region();
+			editButtonHBox.setHgrow(region3, Priority.ALWAYS);
+			editButtonHBox.setHgrow(region4, Priority.ALWAYS);
+			//buttonHBox.setSpacing((screen.getWidth()/2)/3-80);
+			editButtonHBox.getChildren().addAll(editCancelButton, region3, editQuitButton, region4, editSaveButton);
+			//------------------------
+			//EDITION WINDOW MAIN HBOX
+			//------------------------
+			HBox editMainHBox = new HBox();
+			//-------------------------
+			//EDITION WINDOW RIGHT PAGE
+			//-------------------------
+			BorderPane editRightPageBP = new BorderPane();
+			editRightPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			editRightPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			editRightPageBP.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" + 
+                    "-fx-border-radius: 2;" + 
+                    "-fx-border-color: black;");
+			Label editTitreRightPage = new Label("Titre de la recette");
+			editTitreRightPage.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" + 
+                    "-fx-border-radius: 2;" + 
+                    "-fx-border-color: black;");
+			TextArea editRecetteContentRightPage = new TextArea();
+			editRecetteContentRightPage.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" +
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" +
+                    "-fx-border-radius: 2;" +
+                    "-fx-border-color: black;"+
+                    "-fx-opacity: 1;");
+			editRecetteContentRightPage.setEditable(false);
+			editRecetteContentRightPage.setDisable(true);
+			editRightPageBP.setMargin(editRecetteContentRightPage, new Insets(10,0,12,0));
+			editRightPageBP.setAlignment(editTitreRightPage, Pos.CENTER);
+			editRightPageBP.setTop(editTitreRightPage);
+			editRightPageBP.setCenter(editRecetteContentRightPage);
+			editRightPageBP.setBottom(editButtonHBox);
+			
+			//------------------------
+			//EDITION WINDOW LEFT PAGE
+			//------------------------
+			BorderPane editLeftPageBP = new BorderPane();
+			editLeftPageBP.setMaxSize(screen.getWidth()/2, screen.getHeight());
+			editLeftPageBP.setMinSize(screen.getWidth()/2, screen.getHeight());
+			editLeftPageBP.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" + 
+                    "-fx-border-radius: 2;" + 
+                    "-fx-border-color: black;");
+			
+			Label editSelectLeftPage = new Label("Sélectionnez une recette");
+			editSelectLeftPage.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" + 
+                    "-fx-border-radius: 2;" + 
+                    "-fx-border-color: black;");
+			Label editCaracteristiquesLeftPage = new Label("Caractéristiques");
+			editCaracteristiquesLeftPage.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" + 
+                    "-fx-border-radius: 2;" + 
+                    "-fx-border-color: black;");
+			Label editIngredientsLeftPage = new Label("Ingredients");
+			editIngredientsLeftPage.setStyle("-fx-padding: 10;" + 
+                    "-fx-border-style: solid inside;" + 
+                    "-fx-border-width: 2;" +
+                    "-fx-border-insets: 2;" +
+                    "-fx-border-radius: 2;" +
+                    "-fx-border-color: black;");
+			
+			editLeftPageBP.setAlignment(editSelectLeftPage, Pos.CENTER);
+			editLeftPageBP.setTop(editSelectLeftPage);
+			editLeftPageBP.setLeft(editCaracteristiquesLeftPage);
+			editLeftPageBP.setRight(editIngredientsLeftPage);
+			//------------------
+			//CONSULTATION SCENE
+			//------------------
+			editMainHBox.getChildren().addAll(editLeftPageBP, editRightPageBP);
+			Pane editPane = new Pane();
+			editPane.getChildren().add(editMainHBox);
+			Scene editScene = new Scene(editPane, screen.getWidth(), screen.getHeight());
 			
 			//#########################################################################################
 			
@@ -216,7 +316,6 @@ public class BookWindowTest extends Application {
 			//---------------------------------
 			//BUTTON HANDLER CONSULTATION SCENE
 			//---------------------------------
-			
 			previousConsultButton.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					//System.out.println("PREVIOUS recipe");
@@ -237,7 +336,18 @@ public class BookWindowTest extends Application {
 			//----------------------------
 			//BUTTON HANDLER EDITION SCENE
 			//----------------------------
+			editSaveButton.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					System.out.println("recette sauvegardée !");
+				}
+			});
 			
+			editQuitButton.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					primaryStage.setScene(mainScene);
+					primaryStage.centerOnScreen();
+				}
+			});
 			
 			//#########################################################################################
 			
